@@ -1,9 +1,11 @@
-import Image from "next/image";
+import Banner from "@/app/Components/Homepage/Banner"
+import Thelibrary from "./Components/Homepage/Thelibrary";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>HomePage</h1>
+    <div>
+      <Banner />
+      <Thelibrary/>
 
     </div>
   );
