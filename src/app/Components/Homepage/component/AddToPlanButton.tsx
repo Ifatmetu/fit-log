@@ -5,7 +5,39 @@ import { useEffect, useState } from "react";
 
 const AddToPlanButton = ({ app }: { app: TApps }) => {
     const [toast, setToast] = useState("");
-    const [showToast, setShowToast] = useState(false);
+    const [timer, setTimer] = useState(100);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    useEffect(() => {
+        if (!toast) return;
+
+        setTimer(100);
+
+        const interval = setInterval(() => {
+            setTimer((prev) => {
+                if (prev <= 0) {
+                    clearInterval(interval);
+                    return 0;
+                }
+
+                return prev - 2;
+            });
+        }, 50);
+
+        const timeout = setTimeout(() => {
+            setToast("");
+        }, 2500);
+
+        return () => {
+            clearInterval(interval);
+            clearTimeout(timeout);
+        };
+    }, [toast]);
+
+    const showToast = (message: string, success: boolean) => {
+        setIsSuccess(success);
+        setToast(message);
+    };
 
     const handleAdd = () => {
         const oldPlan = JSON.parse(
@@ -17,8 +49,7 @@ const AddToPlanButton = ({ app }: { app: TApps }) => {
         );
 
         if (alreadyAdded) {
-            setToast("Already added to today's plan");
-            setShowToast(true);
+            showToast("Already added to today's plan", false);
             return;
         }
 
@@ -33,23 +64,11 @@ const AddToPlanButton = ({ app }: { app: TApps }) => {
             new Event("planUpdated")
         );
 
-        setToast("Added to today's plan!");
-        setShowToast(true);
+        showToast("Added to today's plan!", true);
     };
-
-    useEffect(() => {
-        if (!showToast) return;
-
-        const timer = setTimeout(() => {
-            setShowToast(false);
-        }, 2500);
-
-        return () => clearTimeout(timer);
-    }, [showToast, toast]);
 
     return (
         <>
-            {/* Button */}
             <button
                 type="button"
                 onClick={handleAdd}
@@ -59,52 +78,37 @@ const AddToPlanButton = ({ app }: { app: TApps }) => {
             </button>
 
             {/* Toast */}
-            {showToast && (
-                <div className="fixed right-4 top-4 z-[99999] w-[280px] overflow-hidden rounded-lg border border-[#30343c] bg-[#15181e] shadow-2xl sm:right-6 sm:top-6">
-
+            {toast && (
+                <div className="fixed right-4 top-4 z-[9999] w-[260px] overflow-hidden rounded-lg border border-white/10 bg-[#171a20] shadow-2xl sm:right-6 sm:top-6">
+                    
                     <div className="flex items-center gap-3 px-4 py-3">
-
-                        {/* Green Check */}
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#b7f000] text-sm font-black text-black">
-                            ✓
+                        {/* Status */}
+                        <div
+                            className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-black ${
+                                isSuccess
+                                    ? "bg-[#b7f000] text-black"
+                                    : "bg-[#2a2e35] text-gray-400"
+                            }`}
+                        >
+                            {isSuccess ? "✓" : "!"}
                         </div>
 
-                        {/* Message */}
-                        <div>
-                            <p className="text-[10px] font-bold text-white">
-                                {toast}
-                            </p>
-
-                            <p className="mt-0.5 text-[8px] text-gray-500">
-                                FitLog
-                            </p>
-                        </div>
-
+                        <p className="text-[10px] font-medium text-white">
+                            {toast}
+                        </p>
                     </div>
 
                     {/* Green Timer */}
-                    <div className="h-[3px] w-full bg-[#292d34]">
-                        <div
-                            key={toast}
-                            className="h-full origin-left bg-[#b7f000]"
-                            style={{
-                                animation:
-                                    "toastTimer 2.5s linear forwards",
-                            }}
-                        />
-                    </div>
-
-                    <style jsx>{`
-                        @keyframes toastTimer {
-                            from {
-                                width: 100%;
-                            }
-
-                            to {
-                                width: 0%;
-                            }
-                        }
-                    `}</style>
+                    {isSuccess && (
+                        <div className="h-[3px] w-full bg-[#252932]">
+                            <div
+                                className="h-full bg-[#b7f000] transition-[width] duration-75"
+                                style={{
+                                    width: `${timer}%`,
+                                }}
+                            />
+                        </div>
+                    )}
                 </div>
             )}
         </>

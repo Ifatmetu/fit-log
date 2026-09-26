@@ -7,7 +7,7 @@ const Thelibrary = async () => {
     const data = await getApps();
 
     return (
-        <div className="min-h-screen bg-[#0d0f13] px-6 py-10 text-white">
+        <div id="library" className="min-h-screen bg-[#0d0f13] px-6 py-10 text-white">
 
             <div className="mx-auto mb-8 max-w-6xl">
                 <h1 className="text-3xl font-black tracking-tight">

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import banner from "@/assets/banner.png";
-
+import BrowseButton from "./component/BrowseButton";
 const Banner = () => {
     return (
         <section className="mx-auto max-w-7xl bg-[#0d0f13] px-3 pt-4 sm:px-6 sm:pt-8">
@@ -35,9 +35,7 @@ const Banner = () => {
                 </div>
 
                 {/* Mobile Button */}
-                <button className="mt-4 rounded-md bg-[#b7f000] px-4 py-2.5 text-[9px] font-black text-black transition hover:bg-[#c8ff20]">
-                    BROWSE WORKOUTS
-                </button>
+                <BrowseButton/>
 
             </div>
 
@@ -64,9 +62,7 @@ const Banner = () => {
                         into today&apos;s plan, and watch the week&apos;s work add up.
                     </p>
 
-                    <button className="mt-5 rounded-md bg-[#b7f000] px-4 py-2.5 text-[9px] font-black text-black transition hover:bg-[#c8ff20]">
-                        BROWSE WORKOUTS
-                    </button>
+                    <BrowseButton/>
 
                 </div>
 
