@@ -13,6 +13,11 @@ const MyPlanList = () => {
     const [saved, setSaved] = useState<TApps[]>([]);
     const [completed, setCompleted] = useState<(string | number)[]>([]);
 
+    // Sort state
+    const [sortBy, setSortBy] = useState<
+        "duration" | "caloriesBurned" | "rating"
+    >("duration");
+
     // URL theke active tab
     const activeTab =
         searchParams.get("tab") === "saved"
@@ -93,6 +98,7 @@ const MyPlanList = () => {
             new Event("planUpdated")
         );
 
+        // Completed list thekeo remove
         setCompleted((prev) => {
             const newCompleted = prev.filter(
                 (item) => item !== id
@@ -129,6 +135,11 @@ const MyPlanList = () => {
     // Current list
     const currentList =
         activeTab === "today" ? plan : saved;
+
+    // Sort current list
+    const sortedList = [...currentList].sort((a, b) => {
+        return b[sortBy] - a[sortBy];
+    });
 
     return (
         <>
@@ -219,16 +230,39 @@ const MyPlanList = () => {
                         Sort By
                     </span>
 
-                    <button
-                        type="button"
-                        className="flex items-center gap-2 rounded-md border border-[#252932] bg-[#13161c] px-3 py-1.5 text-[8px] text-gray-400"
+                    <select
+                        value={sortBy}
+                        onChange={(e) =>
+                            setSortBy(
+                                e.target.value as
+                                    | "duration"
+                                    | "caloriesBurned"
+                                    | "rating"
+                            )
+                        }
+                        className="rounded-md border border-[#252932] bg-[#13161c] px-3 py-1.5 text-[8px] text-gray-400 outline-none"
                     >
-                        Duration
+                        <option
+                            value="duration"
+                            className="bg-[#13161c]"
+                        >
+                            Duration
+                        </option>
 
-                        <span className="text-[7px]">
-                            ↓
-                        </span>
-                    </button>
+                        <option
+                            value="caloriesBurned"
+                            className="bg-[#13161c]"
+                        >
+                            Calories
+                        </option>
+
+                        <option
+                            value="rating"
+                            className="bg-[#13161c]"
+                        >
+                            Rating
+                        </option>
+                    </select>
                 </div>
             </div>
 
@@ -251,7 +285,7 @@ const MyPlanList = () => {
             ) : (
                 <div className="space-y-3">
 
-                    {currentList.map((app) => {
+                    {sortedList.map((app) => {
 
                         const isCompleted =
                             completed.includes(app.id);
