@@ -1,6 +1,10 @@
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 import Link from "next/link";
+import Workout from "../Homepage/component/Workout";
+import Myplan from "../Homepage/component/Myplan";
+import PlanCount from "../Homepage/component/PlanCount";
+import SavedCount from "../Homepage/component/SavedCount";
 
 const Navbar = () => {
     return (
@@ -8,7 +12,6 @@ const Navbar = () => {
             <div className="mx-auto max-w-6xl px-6">
                 <div className="flex h-14 items-center justify-between">
 
-                    {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
                         <Image
                             src={logo}
@@ -23,38 +26,22 @@ const Navbar = () => {
                         </span>
                     </Link>
 
-                    {/* Center Navigation */}
                     <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-1">
-                        <Link
-                            href="/"
-                            className="rounded-full bg-[#263300] px-4 py-1.5 text-[10px] font-medium text-[#b7f000]"
-                        >
-                            Workouts
-                        </Link>
-
-                        <Link
-                            href="/Myplan"
-                            className="rounded-full px-4 py-1.5 text-[10px] font-medium text-gray-400 transition hover:text-white"
-                        >
-                            My Plan
-                        </Link>
+                        <Workout />
+                        <Myplan />
                     </div>
 
                     {/* Right Side */}
-                    <div className="flex items-center gap-5 ">
+                    <div className="flex items-center gap-5">
 
                         <button className="flex items-center gap-1.5 text-[10px] text-gray-300">
                             Plan
-                            <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#b7f000] text-[9px] font-bold text-black">
-                                0
-                            </span>
+                            <PlanCount />
                         </button>
 
                         <button className="flex items-center gap-1.5 text-[10px] text-gray-400">
                             Saved
-                            <span className="flex h-4 w-4 items-center justify-center rounded-full border border-[#30333a] text-[9px] text-gray-400">
-                                0
-                            </span>
+                            <SavedCount />
                         </button>
 
                     </div>

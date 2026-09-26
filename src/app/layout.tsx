@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Components/Shared/Navbar";
 import Footer from "./Components/Shared/Footer";
-
+import FitcontextProvider from "@/context/Fitcontext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,13 +26,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#0b0d10] text-white">
-        <Navbar/>
+        <FitcontextProvider>
+          <Navbar />
 
-        <main className="flex-1 bg-[#0d0f13]">
-          {children}
-        </main>
+          <main className="flex-1">
+            {children}
+          </main>
 
-        <Footer />
+          <Footer />
+        </FitcontextProvider>
       </body>
     </html>
   );

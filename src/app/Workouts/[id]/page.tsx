@@ -1,5 +1,6 @@
 import { getApp } from "@/lib/Datafetch";
-
+import AddToPlanButton from "@/app/Components/Homepage/component/AddToPlanButton";
+import SaveForLater from "@/app/Components/Homepage/component/SaveForLater";
 const DetailsPage = async ({
     params,
 }: {
@@ -143,13 +144,9 @@ const DetailsPage = async ({
                         {/* Buttons */}
                         <div className="mt-6 flex gap-2">
 
-                            <button className="rounded-md bg-[#b7f000] px-4 py-2 text-[9px] font-bold text-black transition hover:bg-[#c8ff22]">
-                                ⊞ &nbsp; Add to today's plan
-                            </button>
+                            <AddToPlanButton app={app} />
 
-                            <button className="rounded-md border border-white/10 px-4 py-2 text-[9px] text-gray-300 transition hover:border-white/20 hover:text-white">
-                                ♡ &nbsp; Save for later
-                            </button>
+                            <SaveForLater app={app} />
 
                         </div>
 
