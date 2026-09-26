@@ -77,12 +77,12 @@ const AddToPlanButton = ({ app }: { app: TApps }) => {
                 ⊞ &nbsp; Add to today's plan
             </button>
 
-            {/* Toast */}
+            
             {toast && (
                 <div className="fixed right-4 top-4 z-[9999] w-[260px] overflow-hidden rounded-lg border border-white/10 bg-[#171a20] shadow-2xl sm:right-6 sm:top-6">
                     
                     <div className="flex items-center gap-3 px-4 py-3">
-                        {/* Status */}
+                        
                         <div
                             className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-black ${
                                 isSuccess
@@ -98,7 +98,7 @@ const AddToPlanButton = ({ app }: { app: TApps }) => {
                         </p>
                     </div>
 
-                    {/* Green Timer */}
+                    
                     {isSuccess && (
                         <div className="h-[3px] w-full bg-[#252932]">
                             <div

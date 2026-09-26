@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import MyPlanList from "@/app/Components/Homepage/component/MyPlanList";
 
 const MyPlan = () => {
@@ -5,7 +6,6 @@ const MyPlan = () => {
         <div className="min-h-screen bg-[#0b0d11] text-white">
             <main className="mx-auto max-w-6xl px-6 py-8">
 
-                {/* Header */}
                 <div className="mb-5">
                     <h1 className="text-2xl font-black tracking-tight">
                         MY PLAN
@@ -16,7 +16,9 @@ const MyPlan = () => {
                     </p>
                 </div>
 
-                <MyPlanList />
+                <Suspense fallback={<div>Loading workouts...</div>}>
+                    <MyPlanList />
+                </Suspense>
 
             </main>
         </div>

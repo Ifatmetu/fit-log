@@ -5,7 +5,7 @@ const Banner = () => {
     return (
         <section className="mx-auto max-w-7xl bg-[#0d0f13] px-3 pt-4 sm:px-6 sm:pt-8">
 
-            {/* ================= MOBILE ================= */}
+            
             <div className="flex flex-col items-center rounded-xl border border-[#15171D] bg-[#15171D] px-5 py-7 text-center sm:hidden">
 
                 <p className="mb-3 text-[8px] font-bold tracking-[0.12em] text-[#b7f000]">
@@ -23,7 +23,7 @@ const Banner = () => {
                     into today&apos;s plan, and watch the week&apos;s work add up.
                 </p>
 
-                {/* Mobile Image */}
+                
                 <div className="relative mt-5 h-[190px] w-[190px]">
                     <Image
                         src={banner}
@@ -34,16 +34,16 @@ const Banner = () => {
                     />
                 </div>
 
-                {/* Mobile Button */}
+                
                 <BrowseButton/>
 
             </div>
 
 
-            {/* ================= DESKTOP ================= */}
+           
             <div className="relative hidden h-[315px] items-center justify-between overflow-hidden rounded-xl border border-[#15171D] bg-[#15171D] px-10 sm:flex">
 
-                {/* Left Content */}
+                
                 <div className="relative z-10 max-w-[500px]">
 
                     <p className="mb-4 text-[9px] font-bold tracking-[0.12em] text-[#b7f000]">
@@ -66,7 +66,7 @@ const Banner = () => {
 
                 </div>
 
-                {/* Right Image */}
+                
                 <div className="absolute right-10 top-1/2 h-[250px] w-[240px] -translate-y-1/2">
                     <Image
                         src={banner}

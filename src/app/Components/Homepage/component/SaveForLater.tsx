@@ -29,7 +29,7 @@ const SaveForLater = ({ app }: { app: TApps }) => {
             JSON.stringify(newSaved)
         );
 
-        // Navbar Saved count instantly update
+        
         window.dispatchEvent(
             new Event("savedUpdated")
         );
@@ -50,7 +50,7 @@ const SaveForLater = ({ app }: { app: TApps }) => {
 
     return (
         <>
-            {/* Button */}
+            
             <button
                 type="button"
                 onClick={handleSave}
@@ -59,18 +59,18 @@ const SaveForLater = ({ app }: { app: TApps }) => {
                 ♡ &nbsp; Save for later
             </button>
 
-            {/* Toast */}
+            
             {showToast && (
                 <div className="fixed right-4 top-4 z-[99999] w-[280px] overflow-hidden rounded-lg border border-[#30343c] bg-[#15181e] shadow-2xl sm:right-6 sm:top-6">
 
                     <div className="flex items-center gap-3 px-4 py-3">
 
-                        {/* Green Check */}
+                        
                         <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#b7f000] text-sm font-black text-black">
                             ✓
                         </div>
 
-                        {/* Message */}
+                        
                         <div>
                             <p className="text-[10px] font-bold text-white">
                                 {toast}
@@ -83,7 +83,7 @@ const SaveForLater = ({ app }: { app: TApps }) => {
 
                     </div>
 
-                    {/* Green Timer */}
+                    
                     <div className="h-[3px] w-full bg-[#292d34]">
                         <div
                             key={toast}

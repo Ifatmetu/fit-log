@@ -14,10 +14,10 @@ const SavedCount = () => {
             setCount(saved.length);
         };
 
-        // Initial count
+        
         updateCount();
 
-        // Same tab update
+        
         window.addEventListener("savedUpdated", updateCount);
 
         return () => {

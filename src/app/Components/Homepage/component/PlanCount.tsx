@@ -14,10 +14,10 @@ const PlanCount = () => {
             setCount(plan.length);
         };
 
-        // Initial count
+        
         updateCount();
 
-        // Same tab update
+        
         window.addEventListener("planUpdated", updateCount);
 
         return () => {
