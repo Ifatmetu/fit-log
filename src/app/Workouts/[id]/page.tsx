@@ -1,6 +1,7 @@
 import { getApp } from "@/lib/Datafetch";
 import AddToPlanButton from "@/app/Components/Homepage/component/AddToPlanButton";
 import SaveForLater from "@/app/Components/Homepage/component/SaveForLater";
+
 const DetailsPage = async ({
     params,
 }: {
@@ -13,10 +14,11 @@ const DetailsPage = async ({
         <div className="min-h-screen bg-[#0d0f13] px-4 py-6 text-white md:px-8 md:py-8">
             <div className="mx-auto max-w-6xl">
 
-                <div className="grid gap-7 md:grid-cols-[1fr_1.05fr]">
+                {/* Mobile: 1 Column | Desktop: 2 Columns */}
+                <div className="grid grid-cols-1 gap-7 md:grid-cols-[1fr_1.05fr]">
 
-                    {/* LEFT - IMAGE */}
-                    <div className="relative h-[420px] overflow-hidden rounded-lg md:h-[560px]">
+                    {/* IMAGE */}
+                    <div className="relative h-[360px] overflow-hidden rounded-lg sm:h-[420px] md:h-[560px]">
                         <img
                             src={app.image}
                             alt={app.name}
@@ -24,7 +26,7 @@ const DetailsPage = async ({
                         />
                     </div>
 
-                    {/* RIGHT - DETAILS */}
+                    {/* DETAILS */}
                     <div className="flex flex-col justify-center">
 
                         {/* Title */}
@@ -38,7 +40,7 @@ const DetailsPage = async ({
                         </p>
 
                         {/* Muscle Groups */}
-                        <div className="mt-4 flex gap-2">
+                        <div className="mt-4 flex flex-wrap gap-2">
                             {app.muscleGroups.map((muscle: string) => (
                                 <span
                                     key={muscle}
@@ -56,7 +58,7 @@ const DetailsPage = async ({
                                 <span className="text-[9px] uppercase tracking-wide text-gray-500">
                                     Equipment
                                 </span>
-                                <span className="text-[10px]">
+                                <span className="text-right text-[10px]">
                                     {app.equipment}
                                 </span>
                             </div>
@@ -134,7 +136,9 @@ const DetailsPage = async ({
                                                 {index + 1}.
                                             </span>
 
-                                            <span>{instruction}</span>
+                                            <span>
+                                                {instruction}
+                                            </span>
                                         </div>
                                     )
                                 )}
@@ -142,7 +146,7 @@ const DetailsPage = async ({
                         </div>
 
                         {/* Buttons */}
-                        <div className="mt-6 flex gap-2">
+                        <div className="mt-6 flex flex-wrap gap-2">
 
                             <AddToPlanButton app={app} />
 
@@ -152,7 +156,6 @@ const DetailsPage = async ({
 
                     </div>
                 </div>
-
             </div>
         </div>
     );

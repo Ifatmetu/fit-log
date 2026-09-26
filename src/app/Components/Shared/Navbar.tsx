@@ -12,13 +12,16 @@ const Navbar = () => {
             <div className="mx-auto max-w-6xl px-6">
                 <div className="flex h-14 items-center justify-between">
 
+                    {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
+
+                        {/* Desktop logo image */}
                         <Image
                             src={logo}
                             alt="Fitlog logo"
                             width={28}
                             height={28}
-                            className="h-7 w-7 object-contain"
+                            className="hidden h-7 w-7 object-contain sm:block"
                         />
 
                         <span className="text-sm font-black tracking-wide text-white">
@@ -26,13 +29,20 @@ const Navbar = () => {
                         </span>
                     </Link>
 
-                    <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-1">
+                    {/* Center Navigation - Desktop */}
+                    <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 sm:flex">
                         <Workout />
                         <Myplan />
                     </div>
 
-                    {/* Right Side */}
-                    <div className="flex items-center gap-5">
+                    {/* Mobile Navigation */}
+                    <div className="flex items-center gap-1 sm:hidden">
+                        <Workout />
+                        <Myplan />
+                    </div>
+
+                    {/* Right Side - Desktop Only */}
+                    <div className="hidden items-center gap-5 sm:flex">
 
                         <button className="flex items-center gap-1.5 text-[10px] text-gray-300">
                             Plan

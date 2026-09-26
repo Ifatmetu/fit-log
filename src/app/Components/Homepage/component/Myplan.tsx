@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 const Myplan = () => {
     const pathname = usePathname();
+
     const [planCount, setPlanCount] = useState(0);
 
     useEffect(() => {
@@ -26,10 +27,6 @@ const Myplan = () => {
             }`}
         >
             <span>My Plan</span>
-
-            <span className="text-[8px] text-gray-500">
-                {planCount}
-            </span>
         </Link>
     );
 };
